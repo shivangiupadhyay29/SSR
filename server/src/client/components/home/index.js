@@ -1,7 +1,13 @@
 import React from 'react';
 
 const App = () => {
-return <div>{'Hello there it is server side rendering mock'}</div>
+    const clickMe = () => {
+        alert('hi i am clicked');
+    }
+return <div>
+    <div>{'Hello there it is server side rendering mock.....'}</div>
+    <button onClick={clickMe}>{'Press Me'}</button>
+</div>
 }
 
 export default App;
