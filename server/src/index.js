@@ -7,8 +7,8 @@ import renderer from  './helpers/renderer';
 //directory available to outside world
 app.use(express.static('public'));
 
-app.get('/',(req, res) => {
-    res.send(renderer());
+app.get('*',(req, res) => {
+    res.send(renderer(req));
 })
 
 app.listen(3030, () => console.log('listening at port 3030'));
