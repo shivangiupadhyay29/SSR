@@ -1,8 +1,12 @@
 const path = require('path');
+const merge = require('webpack-merge');
+const baseConfig   = require('./webpack.base');
+const webpackNodeExternals = require('webpack-node-externals');
 
-module.exports = {
+const config = {
     //bundle for node js not browser running env default it runs as browser platform
     target: 'node',
+    name: 'server',
 
     //exclude express to avoid critical dependencies
     // externals: ['express'],
@@ -16,22 +20,8 @@ module.exports = {
         path: path.resolve(__dirname,'build'),
     },
 
+    externals:[webpackNodeExternals()]
 
-    //run babel for every file
-    module:{
-        rules:[ 
-            {
-                test: /\.js?$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/,
-                options: {
-                    presets: [
-                        'react',
-                        'stage-0',
-                        ['env', { targets: { browsers: ['last 2 versions'] }} ]
-                    ]
-                }
-            }
-        ]
-    }
 }
+
+module.exports = merge(baseConfig,config);
